@@ -1,29 +1,32 @@
 {
-  "name": "workshopper-mocha-boilerplate",
+  "name": "stronger-loop",
   "version": "1.0.0",
-  "description": "A boilerplate for workshopper modules with Mocha tests and ES6 syntax",
-  "author": "Thibaud Colas <thib@thib.me> (https://github.com/ThibWeb)",
+  "description": "A basic strongloop workshop for begginers",
+  "author": "Daniel Rodriguez del Villar <daniel@dnd1.com> (https://dnd1.com)",
   "license": "ISC",
-  "homepage": "https://github.com/ThibWeb/workshopper-mocha-boilerplate#readme",
+  "homepage": "https://github.com/dnd1/stronger-loop",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThibWeb/workshopper-mocha-boilerplate.git"
+    "url": "git+https://github.com/dnd1/stronger-loop.git"
   },
   "bugs": {
-    "url": "https://github.com/ThibWeb/workshopper-mocha-boilerplate/issues"
+    "url": "https://github.com/dnd1/stronger-loop.git/issues"
   },
   "keywords": [
     "nodeschool",
     "nodeschool.io",
     "workshopper",
     "workshop",
-    "mocha"
+    "mocha",
+    "strongloop",
+    "loopback",
+    "Drag & Drop"
   ],
   "engines": {
     "node": ">=0.12"
   },
   "preferGlobal": true,
-  "bin": "./es5/workshopper-mocha-boilerplate.js",
+  "bin": "./es5/stronger-loop.js",
   "dependencies": {
     "babel": "^5.8.23",
     "chai": "^3.3.0",

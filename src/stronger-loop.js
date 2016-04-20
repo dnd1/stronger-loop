@@ -8,7 +8,7 @@ import pkg from '../package.json';
 updateNotifier({pkg: pkg}).notify();
 
 workshopper({
-    name: 'workshopper-mocha-boilerplate',
+    name: 'Stronger Loop',
     appDir: __dirname,
     languages: ['en'],
     helpFile: path.join(__dirname, './i18n/help/{lang}.txt'),
