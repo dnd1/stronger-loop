@@ -35,5 +35,9 @@
   "DndUser": {
     "dataSource": "db",
     "public": true
+  },
+  "Tweet": {
+    "dataSource": "db",
+    "public": true
   }
 }

@@ -1,18 +1,20 @@
 {
   "name": "DndUser",
   "plural": "dndusers",
-  "base": "PersistedModel",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string"
-    },
-    "email": {
-      "type": "string"
-    }
+      "createdAt": {
+          "type": "date",
+          "required": true
+      },
+      "fullName": {
+          "type": "string",
+          "required": true
+      }
   },
   "validations": [],
   "relations": {},

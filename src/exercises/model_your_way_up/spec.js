@@ -1,7 +1,8 @@
+const app = global.submission;
+
 import { describe, it } from 'mocha';
 import { expect, assert } from 'chai';
-
-const app = global.submission;
+import 'supertest-as-promised';
 
 describe('Model your way up', () => {
 
@@ -15,16 +16,27 @@ describe('Model your way up', () => {
         server.close(done);
     });
 
-    it('should have a User model', done => {
-        assert(true);
+    it('should be a \'DndUser\' model', done => {
+        var DndUser = app.models['DndUser'];
+        assert.isDefined(DndUser);
         done();
-        //expect(helloWorld).to.exist;
-        //expect(helloWorld).to.be.a('function');
     });
 
-    it('should fail', done => {
-        assert.equal(1,2);
+    it('\'DndUser\' model should extend the base \'User\' model', done => {
+        var DndUser = app.models['DndUser'];
+        assert.equal(DndUser.definition.settings.base, 'User');
         done();
-        //expect(helloWorld('test')).to.be.a('string');
+    });
+
+    it('should be a \'Tweet\' model', done => {
+        var Tweet = app.models['Tweet'];
+        assert.isDefined(Tweet);
+        done();
+    });
+
+    it('\'Tweet\' model should extend the base \'PersistedModel\' model', done => {
+        var Tweet = app.models['Tweet'];
+        assert.equal(Tweet.definition.settings.base, 'PersistedModel');
+        done();
     });
 });

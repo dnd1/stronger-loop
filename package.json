@@ -28,6 +28,9 @@
     "babel": "^5.8.23",
     "chai": "^3.3.0",
     "mocha": "^2.3.3",
+    "superagent": "^1.8.3",
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.1.0",
     "update-notifier": "^0.5.0",
     "workshopper": "thibweb/workshopper#latest-msee",
     "workshopper-exercise": "^2.4.0"
