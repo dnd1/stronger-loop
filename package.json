@@ -1,0 +1,55 @@
+{
+  "name": "workshopper-mocha-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate for workshopper modules with Mocha tests and ES6 syntax",
+  "author": "Thibaud Colas <thib@thib.me> (https://github.com/ThibWeb)",
+  "license": "ISC",
+  "homepage": "https://github.com/ThibWeb/workshopper-mocha-boilerplate#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThibWeb/workshopper-mocha-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ThibWeb/workshopper-mocha-boilerplate/issues"
+  },
+  "keywords": [
+    "nodeschool",
+    "nodeschool.io",
+    "workshopper",
+    "workshop",
+    "mocha"
+  ],
+  "engines": {
+    "node": ">=0.12"
+  },
+  "preferGlobal": true,
+  "bin": "./es5/workshopper-mocha-boilerplate.js",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "chai": "^3.3.0",
+    "mocha": "^2.3.3",
+    "update-notifier": "^0.5.0",
+    "workshopper": "thibweb/workshopper#latest-msee",
+    "workshopper-exercise": "^2.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.3",
+    "eslint": "^1.5.0",
+    "eslint-config-airbnb": "0.0.8",
+    "isparta": "^3.0.4"
+  },
+  "scripts": {
+    "lint": "eslint --cache .",
+    "test:unit": "mocha --compilers js:babel/register src/tests",
+    "test:unit:watch": "mocha --watch --compilers js:babel/register src/tests",
+    "test:unit:coverage": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- src/tests",
+    "test:unit:ci": "mocha --compilers js:babel/register es5/tests",
+    "test:output": "./tests.sh",
+    "pretest": "npm run lint -s",
+    "test": "npm run test:unit -s",
+    "test:ci": "npm run test -s && npm run test:unit:ci -s && npm run test:output -s",
+    "start": "node src/index.js",
+    "build": "rm -rf es5 && cp -R src es5 && babel src --out-dir es5 --ignore=tests,**/solution.js",
+    "prepublish": "npm run build -s"
+  }
+}

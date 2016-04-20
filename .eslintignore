@@ -1,0 +1,11 @@
+node_modules
+*.min.js
+**/lib/
+.grunt
+coverage
+lib-cov
+public
+static
+
+es5/
+tests/
