@@ -33,6 +33,12 @@ Customer.afterRemote('*.save', function(ctx, user, next) {
 });
 ```
 
+When you are done, you must run (Assuming you're in you project's root):
+
+```sh
+$ {appname} verify ./server/server.js
+```
+
 to proceed. Your program will be tested, a report will be generated, and the lesson will be marked `[COMPLETED]` if you are successful.
 
 ----------------------------------------------------------------------

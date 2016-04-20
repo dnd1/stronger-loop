@@ -2,41 +2,72 @@ const app = global.submission;
 
 import { describe, it } from 'mocha';
 import { expect, assert } from 'chai';
-import 'supertest-as-promised';
+var _ = require('lodash');
 
-describe('Model your way up', () => {
+const sap = require('supertest-as-promised');
+const api = sap('http://' + 'localhost' + ':' + app.get('port'));
+
+describe('Hook them up', () => {
 
     var server;
 
-    beforeEach(done => {
-        server = app.listen(done);
+    before(done => {
+        server = app.listen(function() {
+
+            Promise.all([
+                    api.post('/api/tweets').send({ text: 'Hola Mundo' }),
+                    api.post('/api/dndusers').send({
+                        fullName: 'Daniel Rodriguez del Villar',
+                        email: 'daniel@dnd1.com',
+                        password: 'blah',
+                        emailVerified: true
+                    })
+                ])
+                .then(res => { done(); })
+                .catch(done);
+        });
+
+        after(done => {
+            server.close(done);
+        });
     });
 
-    afterEach(done => {
-        server.close(done);
+
+    it('should set the \'createdAt\' property for \'DndUsers\' objects', done => {
+
+        api.post('/api/dndusers/login')
+            .send({ email: 'daniel@dnd1.com', password: 'blah' })
+            .then(res => {
+                return api.get('/api/dndusers/1')
+                    .set({ Authorization: res.body.id });
+            })
+            .then(res => {
+                expect(res.body).to.have.property('createdAt');
+            })
+            .then(done)
+            .catch(done);
     });
 
-    it('should be a \'DndUser\' model', done => {
-        var DndUser = app.models['DndUser'];
-        assert.isDefined(DndUser);
+        it('should set the \'createdAt\' property for \'Tweet\' objects', done => {
+
+            api.get('/api/tweets/1')
+                .then(res => {
+                    expect(res.body).to.have.property('createdAt');
+                })
+                .then(done)
+                .catch(done);
+        });
+
+    it.skip('\'createdAt\' should remain the same after updating a \'DndUser\'', done => {
         done();
     });
 
-    it('\'DndUser\' model should extend the base \'User\' model', done => {
-        var DndUser = app.models['DndUser'];
-        assert.equal(DndUser.definition.settings.base, 'User');
+    it.skip('\'createdAt\' should remain the same after updating a \'Tweet\'', done => {
         done();
     });
 
-    it('should be a \'Tweet\' model', done => {
-        var Tweet = app.models['Tweet'];
-        assert.isDefined(Tweet);
+    it.skip('should hide the password property from \'DndUser\' details', done => {
         done();
     });
 
-    it('\'Tweet\' model should extend the base \'PersistedModel\' model', done => {
-        var Tweet = app.models['Tweet'];
-        assert.equal(Tweet.definition.settings.base, 'PersistedModel');
-        done();
-    });
 });

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-COMMAND="node es5/workshopper-mocha-boilerplate.js"
+COMMAND="node es5/stronger-loop.js"
 
 $COMMAND list
 
