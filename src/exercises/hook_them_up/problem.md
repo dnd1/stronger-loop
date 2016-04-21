@@ -6,8 +6,10 @@ we want to hide some fields whenever a user is retrieved.
 
 1. Add a "createdAt" property to each model.
 2. Create an "operation hook" in each model that sets the "createdAt" attribute to the current date. Keep in mind that
-    the "createdAt" attribute should no change after it has been set.
-3. Create an "remote hook" in the "DndUser" model to hide the password when the users are fetched using the Rest API.
+    the "createdAt" attribute should no change after it has been set, so updating a user should not change the value of
+    the "createdAt" property.
+3. Create a "remote hook" in the "DndUser" model to hide the "password" when a specific user in fetched. Also, hide
+    the "fullName" property, since we want to keep our user's privacy, you know.
 
 ----------------------------------------------------------------------
 
@@ -32,6 +34,8 @@ Customer.afterRemote('*.save', function(ctx, user, next) {
   next();
 });
 ```
+
+Finally, check out the "unsetAttribute" instance function.
 
 When you are done, you must run (Assuming you're in you project's root):
 

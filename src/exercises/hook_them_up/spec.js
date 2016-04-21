@@ -23,7 +23,7 @@ describe('Hook them up', () => {
                         emailVerified: true
                     })
                 ])
-                .then(res => { done(); })
+                .then(() => { done(); })
                 .catch(done);
         });
 
@@ -48,26 +48,85 @@ describe('Hook them up', () => {
             .catch(done);
     });
 
-        it('should set the \'createdAt\' property for \'Tweet\' objects', done => {
+    it('should set the \'createdAt\' property for \'Tweet\' objects', done => {
 
-            api.get('/api/tweets/1')
-                .then(res => {
-                    expect(res.body).to.have.property('createdAt');
-                })
-                .then(done)
-                .catch(done);
-        });
-
-    it.skip('\'createdAt\' should remain the same after updating a \'DndUser\'', done => {
-        done();
+        api.get('/api/tweets/1')
+            .then(res => {
+                expect(res.body).to.have.property('createdAt');
+            })
+            .then(done)
+            .catch(done);
     });
 
-    it.skip('\'createdAt\' should remain the same after updating a \'Tweet\'', done => {
-        done();
+    it('\'createdAt\' should remain the same after updating a \'DndUser\'', done => {
+        api.post('/api/dndusers/login')
+            .send({ email: 'daniel@dnd1.com', password: 'blah' })
+            .then(res => {
+                return Promise.all([
+                    res.body,
+                    api.get('/api/dndusers/1')
+                    .set({ Authorization: res.body.id })
+                ]);
+            })
+            .then(res => {
+                var token = res[0];
+                var originalDate = res[1].body.createdAt;
+                return Promise.all([
+                    originalDate,
+                    api.put('/api/dndusers/1')
+                    .set({ Authorization: token.id })
+                    .send({ fullName: 'Simon Bolivar' })
+                ]);
+            })
+            .then(res => {
+                assert.equal(res[0], res[1].body.createdAt);
+            })
+            .then(done)
+            .catch(done);
     });
 
-    it.skip('should hide the password property from \'DndUser\' details', done => {
-        done();
+    it('\'createdAt\' should remain the same after updating a \'Tweet\'', done => {
+        return api.get('/api/tweets/1')
+        .then(res => {
+                var originalDate = res.body.createdAt;
+                return Promise.all([
+                    originalDate,
+                    api.put('/api/tweets/1').send({ text: 'Esto es un tweet' })
+                ]);
+            })
+            .then(res => {
+                assert.equal(res[0], res[1].body.createdAt);
+            })
+            .then(done)
+            .catch(done);
+    });
+
+    it('should hide the "password" property from \'DndUser\' details', done => {
+        api.post('/api/dndusers/login')
+            .send({ email: 'daniel@dnd1.com', password: 'blah' })
+            .then(res => {
+                return api.get('/api/dndusers/1')
+                    .set({ Authorization: res.body.id });
+            })
+            .then(res => {
+                expect(res.body).to.not.have.property('password');
+            })
+            .then(done)
+            .catch(done);
+    });
+
+    it('should hide the "fullName" property from \'DndUser\' details', done => {
+        api.post('/api/dndusers/login')
+            .send({ email: 'daniel@dnd1.com', password: 'blah' })
+            .then(res => {
+                return api.get('/api/dndusers/1')
+                    .set({ Authorization: res.body.id });
+            })
+            .then(res => {
+                expect(res.body).to.not.have.property('fullName');
+            })
+            .then(done)
+            .catch(done);
     });
 
 });
