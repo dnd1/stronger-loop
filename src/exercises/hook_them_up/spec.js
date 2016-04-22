@@ -26,10 +26,10 @@ describe('Hook them up', () => {
                 .then(() => { done(); })
                 .catch(done);
         });
+    });
 
-        after(done => {
-            server.close(done);
-        });
+    after(done => {
+        server.close(done);
     });
 
 
@@ -87,7 +87,7 @@ describe('Hook them up', () => {
 
     it('\'createdAt\' should remain the same after updating a \'Tweet\'', done => {
         return api.get('/api/tweets/1')
-        .then(res => {
+            .then(res => {
                 var originalDate = res.body.createdAt;
                 return Promise.all([
                     originalDate,

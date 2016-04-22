@@ -39,7 +39,7 @@ export default function(runFunction) {
 
     // Mocha setup to run the exercise's tests.
     exercise.addSetup(function(mode, callback) {
-        const mocha = new Mocha();
+        const mocha = new Mocha({timeout: 20000});
         mocha.addFile(path.join(this.dir, 'spec.js'));
 
         runFunction(global.submission);

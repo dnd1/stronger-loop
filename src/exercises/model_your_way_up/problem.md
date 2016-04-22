@@ -8,8 +8,9 @@ First things first! We want to make sure that you're all set, let's start small.
     1. "DndUser" model, which extends from the base "User" model. The plural for this model should be: "dndusers".
     2. "Tweet" model, which extends from the base "PersistedModel" model. The plural for this model should be: "tweets".
 
-1. Add a "createdAt" property to each model. Also add a "fullName" property to the "DndUser" model while you are at it.
+3. Add a "createdAt" property to each model. Also add a "fullName" property to the "DndUser" model while you are at it.
 
+Make sure all your models use the inMemory data source.
 ----------------------------------------------------------------------
 
 ## HINTS
