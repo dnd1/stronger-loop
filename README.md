@@ -1,7 +1,12 @@
 Workshopper course for strongloop and loopback
 ==========
 
-> A boilerplate for workshopper modules with Mocha tests and ES6 syntax
+This is a beginner Strongloop workshop for newbies at Soluciones Drag & Drop. It covers:
+
+* Models
+* Remote hooks and Operation hooks
+* Remote methods
+* Relations
 
 ![Screenshot](screenshot.png)
 

@@ -1,11 +1,11 @@
 Love relations
 ----------------------------------------------------------------------
 
-Hi again! Now, we want you relate your models. For this, lets add the following relations:
+Hi again! Now, we want you relate your models. Fulfill the following requirements using relations.
 
 1. One "DndUser" has many "Tweets".
 2. A "Tweet" belongs to one "DndUser".
-3. One "DndUser" may have many favorite "Tweet" objects.
+3. One "DndUser" can link multiple "Tweet"s as favorites.
 
 Name the previous relation "favorites", now remember:
 
