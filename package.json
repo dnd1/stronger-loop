@@ -56,7 +56,7 @@
     "test": "npm run test:unit -s",
     "test:ci": "npm run test -s && npm run test:unit:ci -s && npm run test:output -s",
     "start": "node src/index.js",
-    "build": "rm -rf es5 && cp -R src es5 && babel src --out-dir es5 --ignore=tests,**/solution.js",
+    "build": "rm -rf es5 && cp -R src es5 && babel src --out-dir es5 --ignore=tests,**/solution.js; cp package.json es5/",
     "prepublish": "npm run build -s"
   }
 }
