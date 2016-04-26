@@ -16,4 +16,4 @@ This is a beginner Strongloop workshop for newbies at Soluciones Drag & Drop. It
 4. **.. profit!**
 
 ## Credits
-This was inspired and based on the (workshopper-mocha-boilerplate)([https://github.com/ThibWeb/workshopper-mocha-boilerplate) repo.
+This was inspired and based on the [workshopper-mocha-boilerplate](https://github.com/ThibWeb/workshopper-mocha-boilerplate) repo.
